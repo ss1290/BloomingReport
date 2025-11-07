@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 import { getAllReports } from '../Utils/RealmInstance';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -18,16 +24,17 @@ const SavedReportsScreen = ({ navigation }) => {
   };
 
   const renderItem = ({ item }) => (
-    <TouchableOpacity
-      style={styles.card}
-      onPress={() => navigation.navigate('ReportDetail', { report: item })}
-    >
+    <View style={styles.card}>
       <View style={styles.cardContent}>
         <Text style={styles.name}>{item.fullName || 'Unnamed Farmer'}</Text>
-        <Text style={styles.subtext}>📍 {item.village || item.blockName || 'Unknown Location'}</Text>
-        <Text style={styles.date}>🗓️ {new Date(item.createdAt).toLocaleString()}</Text>
+        <Text style={styles.subtext}>
+          📍 {item.village || item.blockName || 'Unknown Location'}
+        </Text>
+        <Text style={styles.date}>
+          🗓️ {new Date(item.createdAt).toLocaleString()}
+        </Text>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 
   return (
@@ -38,7 +45,7 @@ const SavedReportsScreen = ({ navigation }) => {
       ) : (
         <FlatList
           data={reports}
-          keyExtractor={(item) => item._id.toString()}
+          keyExtractor={item => item._id.toString()}
           renderItem={renderItem}
           contentContainerStyle={{ paddingBottom: 20 }}
         />
@@ -56,7 +63,7 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   header: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: '600',
     marginBottom: 12,
     color: '#333',

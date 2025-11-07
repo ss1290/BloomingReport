@@ -156,10 +156,7 @@ const BeekeepingScoreScreen = ({ navigation }) => {
           resetFormData();
 
           setTimeout(() => {
-            navigation.reset({
-              index: 0,
-              routes: [{ name: 'FarmerProfile' }],
-            });
+            navigation.navigate('Saved Reports');
           }, 1000);
         } else {
           throw new Error(result.error);
